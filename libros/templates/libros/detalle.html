@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.titulo }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .info {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .descripcion {
+            margin-top: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            white-space: pre-line; /* respeta saltos de línea */
+        }
+        .acciones {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+        a {
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .editar {
+            background: #007bff;
+            color: white;
+        }
+        .editar:hover {
+            background: #0056b3;
+        }
+        .eliminar {
+            background: #dc3545;
+            color: white;
+        }
+        .eliminar:hover {
+            background: #a71d2a;
+        }
+        .volver {
+            background: #6c757d;
+            color: white;
+            flex-grow: 1;
+        }
+        .volver:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ object.titulo }}</h1>
+        <p class="info">✍ Autor: <strong>{{ object.autor }}</strong></p>
+        <p class="info">📅 Año de publicación: <strong>{{ object.anio_publicacion }}</strong></p>
+
+        <div class="descripcion">
+            <h3>📖 Descripción</h3>
+            <p>{{ object.descripcion|default:"(Sin descripción)" }}</p>
+        </div>
+
+        <div class="acciones">
+            <a class="editar" href="{% url 'editar_libro' object.pk %}">✏️ Editar</a>
+            <a class="eliminar" href="{% url 'eliminar_libro' object.pk %}">🗑 Eliminar</a>
+            <a class="volver" href="{% url 'lista_libros' %}">⬅️ Volver</a>
+        </div>
+    </div>
+</body>
+</html>
